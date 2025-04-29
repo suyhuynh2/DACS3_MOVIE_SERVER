@@ -21,7 +21,7 @@ return [
 
 
     'allowed_origins_patterns' => [
-        '/^http:\/\/192\.168\.20\.\d{1,3}(:\d+)?$/',
+        '/^http:\/\/192\.168\.1\.\d{1,3}(:\d+)?$/',
         '/^http:\/\/localhost(:\d+)?$/',
     ],
 
