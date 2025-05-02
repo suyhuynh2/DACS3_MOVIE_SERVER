@@ -13,7 +13,7 @@ class Users extends Authenticatable
     protected $primaryKey = 'firebase_uid';
     public $incrementing = false; // Khóa chính không tự tăng
     protected $keyType = 'string'; // Khóa chính là chuỗi
-    protected $fillable = ['email', 'name', 'provider', 'role', 'fcm_token'];
+    protected $fillable = ['firebase_uid', 'email', 'name', 'provider', 'role', 'fcm_token'];
 
     public function ratings()
     {

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\FriendController;
 use App\Http\Controllers\API\Movie_API;
 use App\Http\Controllers\API\Genres_API;
+use App\Http\Controllers\API\Users_API;
 
 
 /*
@@ -23,3 +24,6 @@ Route::get('/movies-all', [Movie_API::class, 'all_movie_api'])->name('movies-all
 
 //genres
 Route::get('/genres-all', [Genres_API::class, 'all_genres_api'])->name('genres-all');
+
+// Users
+Route::post('/users', [Users_API::class, 'createUser'])->name('users.store');

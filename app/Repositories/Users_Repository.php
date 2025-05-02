@@ -39,7 +39,7 @@ class Users_Repository
         return $this->model->where('name', 'like', '%' . $name . '%')->first();
     }
 
-    public function findById(string $firebase_uid): Users
+    public function findById(string $firebase_uid): ?Users
     {
         return $this->model->where('firebase_uid', $firebase_uid)->first();
     }
