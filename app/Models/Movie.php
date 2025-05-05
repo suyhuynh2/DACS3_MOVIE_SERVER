@@ -26,6 +26,8 @@ class Movie extends Model
         'status',
     ];
 
+    protected $appends = ['averageRating'];
+
     public function genres()
     {
         return $this->belongsToMany(Genres::class, 'genre_movie', 'movie_id', 'genres_id');
@@ -44,5 +46,10 @@ class Movie extends Model
     public function averageRating()
     {
         return $this->ratings()->avg('score');
+    }
+
+    public function getAverageRatingAttribute(): float
+    {
+        return round($this->ratings()->avg('score') ?? 0, 1);
     }
 }

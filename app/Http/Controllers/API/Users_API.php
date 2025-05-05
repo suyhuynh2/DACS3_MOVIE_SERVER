@@ -48,4 +48,21 @@ class Users_API extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function updateUser(Request $request, $firebase_uid)
+    {
+        try {
+            $data = $request->only(['name', 'email', 'provider', 'role']);
+            $updated = $this->usersRepository->update($firebase_uid, $data);
+
+            if ($updated) {
+                $updatedUser = $this->usersRepository->findById($firebase_uid);
+                return response()->json($updatedUser, 200);
+            } else {
+                return response()->json(['error' => 'User not found or update failed'], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
