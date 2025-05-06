@@ -17,8 +17,12 @@ class Movie_Repository
 
     public function all(): Collection
     {
-        return $this->model->with(['genres'])->get()->makeHidden(['ratings', 'favoredByUsers']);
+        return $this->model
+            ->with(['genres', 'ratings.user'])
+            ->get()
+            ->makeHidden(['favoredByUsers']);
     }
+
 
     public function create(array $data): Movie
     {

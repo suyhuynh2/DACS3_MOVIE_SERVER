@@ -7,7 +7,8 @@ use App\Http\Controllers\API\Movie_API;
 use App\Http\Controllers\API\Genres_API;
 use App\Http\Controllers\API\Users_API;
 use App\Http\Controllers\API\Favorite_API;
-
+use App\Http\Controllers\API\Rating_API;
+use App\Models\Rating;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,7 @@ Route::post('/add-favorite', [Favorite_API::class, 'createFavorite'])->name('fav
 Route::get('/check-favorite/{firebase_uid}/{movie_id}', [Favorite_API::class, 'checkFavorite'])->name('favorite.check');
 Route::post('/remove-favorite', [Favorite_API::class, 'removeFavorite'])->name('favorite.remove');
 Route::get('get-favorite/{firebase_uid}', [Favorite_API::class, 'getFavoritesByUser'])->name('favorite.get');
+
+//Rating
+Route::post('/add-rating', [Rating_API::class, 'createRating'])->name('rating.create');
+Route::get('/all-rating/{movie_id}', [Rating_API::class, 'all_rating_api'])->name('rating.all');

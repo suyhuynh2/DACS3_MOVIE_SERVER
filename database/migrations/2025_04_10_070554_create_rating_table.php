@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('movie_id');
             $table->string('firebase_uid');
             $table->integer('score');
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->foreign('movie_id')->references('movie_id')->on('movie')->onDelete('cascade');
