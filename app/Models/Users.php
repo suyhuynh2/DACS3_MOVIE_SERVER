@@ -24,4 +24,9 @@ class Users extends Authenticatable
     {
         return $this->hasMany(Favorite::class, 'firebase_uid', 'firebase_uid');
     }
+
+    public function watchHistory()
+    {
+        return $this->hasMany(History::class, 'firebase_uid', 'firebase_uid');
+    }
 }

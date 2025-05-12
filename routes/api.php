@@ -2,13 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\FriendController;
 use App\Http\Controllers\API\Movie_API;
 use App\Http\Controllers\API\Genres_API;
 use App\Http\Controllers\API\Users_API;
 use App\Http\Controllers\API\Favorite_API;
 use App\Http\Controllers\API\Rating_API;
-use App\Models\Rating;
+use App\Http\Controllers\API\History_API;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +39,9 @@ Route::get('get-favorite/{firebase_uid}', [Favorite_API::class, 'getFavoritesByU
 //Rating
 Route::post('/add-rating', [Rating_API::class, 'createRating'])->name('rating.create');
 Route::get('/all-rating/{movie_id}', [Rating_API::class, 'all_rating_api'])->name('rating.all');
+
+//History
+Route::post('/add-history', [History_API::class, 'store'])->name('history.create');
+Route::get('/get-history/{firebase_uid}', [History_API::class, 'getHistoryByUser'])->name('history.get');
+Route::get('/check-history/{firebase_uid}/{movie_id}', [History_API::class, 'checkHistory'])->name('history.check');
+Route::get('/get-info-history/{firebase_uid}/{movie_id}', [History_API::class, 'getInfoHistory'])->name('history.getInfoHistory');

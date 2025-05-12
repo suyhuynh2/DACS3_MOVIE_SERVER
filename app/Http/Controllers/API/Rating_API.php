@@ -7,14 +7,17 @@ use App\Repositories\Rating_Repository;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Events\MovieUpdate;
+use App\Repositories\Movie_Repository;
 
 class Rating_API extends Controller
 {
     protected $ratingRepository;
+    protected $movieRepository;
 
-    public function __construct(Rating_Repository $ratingRepository)
+    public function __construct(Rating_Repository $ratingRepository, Movie_Repository $movieRepository)
     {
         $this->ratingRepository = $ratingRepository;
+        $this->movieRepository = $movieRepository;
     }
 
 
@@ -30,7 +33,7 @@ class Rating_API extends Controller
         $data = $request->all();
         $rating = $this->ratingRepository->create($data);
 
-        $movie = Movie::find($data['movie_id']);
+        $movie = $this->movieRepository->findById($data['movie_id']);
         event(new MovieUpdate($movie, 'update'));
 
         return response()->json($rating, 201);

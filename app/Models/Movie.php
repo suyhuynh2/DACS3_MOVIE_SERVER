@@ -52,4 +52,9 @@ class Movie extends Model
     {
         return round($this->ratings()->avg('score') ?? 0, 1);
     }
+
+    public function watchHistory()
+    {
+        return $this->hasMany(History::class, 'movie_id', 'movie_id');
+    }
 }

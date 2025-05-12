@@ -40,7 +40,8 @@ class Favorite_Repository
 
     public function isFavorite(string $firebase_uid, int $movie_id): bool
     {
-        return $this->model->where('firebase_uid', $firebase_uid)
+        return $this->model
+            ->where('firebase_uid', $firebase_uid)
             ->where('movie_id', $movie_id)
             ->exists();
     }

@@ -46,9 +46,9 @@ class Movie_Repository
 
     public function findById(int $movie_id): ?Movie
     {
-        return $this->model->with('genres')
+        return $this->model->with(['genres', 'ratings.user'])
             ->find($movie_id)
-            ?->makeHidden(['ratings', 'favoredByUsers']);
+            ?->makeHidden('favoredByUsers');
     }
 
     public function paginate($perPage)
