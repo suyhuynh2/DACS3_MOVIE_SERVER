@@ -43,4 +43,9 @@ class Users_Repository
     {
         return $this->model->where('firebase_uid', $firebase_uid)->first();
     }
+
+    public function countByRole(string $role): int
+    {
+        return $this->model->where('role', $role)->count();
+    }
 }

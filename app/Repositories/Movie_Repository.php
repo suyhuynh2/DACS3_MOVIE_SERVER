@@ -55,4 +55,9 @@ class Movie_Repository
     {
         return $this->model->paginate($perPage);
     }
+
+    public function topByViews($limit = 5)
+    {
+        return $this->model->orderByDesc('views')->limit($limit)->get();
+    }
 }

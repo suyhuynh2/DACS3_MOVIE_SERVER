@@ -81,6 +81,9 @@ class Movie_Controller extends Controller
             $movie->genres()->attach($genreIds);
         }
 
+
+        $movie->load(['genres']);
+
         event(new MovieUpdate($movie, 'create'));
 
         return redirect()->back()->with('success', 'Thêm phim thành công');
@@ -160,9 +163,13 @@ class Movie_Controller extends Controller
 
     public function delete_movie($movie_id)
     {
-        event(new MovieUpdate($movie_id, 'delete'));
+        $movie = $this->movieRepository->findById($movie_id);
+        if ($movie) {
+            event(new MovieUpdate($movie, 'delete'));
+            $this->movieRepository->delete($movie_id);
+            return redirect()->back()->with('success', 'Xóa phim thành công!');
+        }
 
-        $this->movieRepository->delete($movie_id);
-        return redirect()->back()->with('success', 'Xóa phim thành công!');
+        return redirect()->back()->with('error', 'Phim không tồn tại!');
     }
 }

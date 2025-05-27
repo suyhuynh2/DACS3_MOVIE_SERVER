@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Genres_Controller;
 use App\Http\Controllers\Admin\Movie_Controller;
 use App\Http\Controllers\Admin\Users_Controller;
+use App\Http\Controllers\Admin\Dashboard_Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,7 @@ use App\Http\Controllers\Admin\Users_Controller;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [Dashboard_Controller::class, 'index']);
 
 
 

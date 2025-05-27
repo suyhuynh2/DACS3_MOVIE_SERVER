@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Favorite;
+use App\Models\Movie;
 
 class Favorite_Repository
 {
@@ -66,5 +67,13 @@ class Favorite_Repository
     {
         return $this->model
             ->where('firebase_uid', $firebase_uid)->get();
+    }
+
+    public function topByFavorites($limit = 5)
+    {
+        return Movie::withCount('favoredByUsers')
+            ->orderByDesc('favored_by_users_count')
+            ->limit($limit)
+            ->get();
     }
 }

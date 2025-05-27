@@ -23,6 +23,7 @@ use App\Http\Controllers\API\History_API;
 //movie
 Route::get('/movies-all', [Movie_API::class, 'all_movie_api'])->name('movies-all');
 
+
 //genres
 Route::get('/genres-all', [Genres_API::class, 'all_genres_api'])->name('genres-all');
 

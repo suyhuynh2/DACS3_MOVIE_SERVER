@@ -31,8 +31,8 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3">
                                 <select name="role" class="form-control" id="role">
-                                    <option value="1" {{ $user->role == 1 ? 'selected' : '' }}>Bình thường</option>
-                                    <option value="0" {{ $user->role == 0 ? 'selected' : '' }}>Vip</option>
+                                    <option value="VIP" {{ $user->role == "VIP" ? 'selected' : '' }}>VIP</option>
+                                    <option value="FREE" {{ $user->role == "FREE" ? 'selected' : '' }}>FREE</option>
                                 </select>
                             </div>
                             <div class="form-group col-sm-6 mb-3">

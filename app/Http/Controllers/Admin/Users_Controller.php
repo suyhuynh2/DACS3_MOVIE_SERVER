@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Repositories\Users_Repository;
 use App\Http\Controllers\Controller;
+use App\Events\UserUpdated;
 
 class Users_Controller extends Controller
 {
@@ -47,6 +48,8 @@ class Users_Controller extends Controller
         $data['provider'] = $request->input('provider');
 
         $this->usersRepository->update($firebase_uid, $data);
+        $updatedUser = $this->usersRepository->findById($firebase_uid);
+        event(new UserUpdated($updatedUser, 'updated'));
 
         return redirect()->route('all-users-ui')->with('success', 'Cập nhật người dùng thành công');
     }
