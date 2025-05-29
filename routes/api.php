@@ -8,6 +8,7 @@ use App\Http\Controllers\API\Users_API;
 use App\Http\Controllers\API\Favorite_API;
 use App\Http\Controllers\API\Rating_API;
 use App\Http\Controllers\API\History_API;
+use App\Http\Controllers\API\Payment_API;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,13 @@ Route::post('/add-history', [History_API::class, 'store'])->name('history.create
 Route::get('/get-history/{firebase_uid}', [History_API::class, 'getHistoryByUser'])->name('history.get');
 Route::get('/check-history/{firebase_uid}/{movie_id}', [History_API::class, 'checkHistory'])->name('history.check');
 Route::get('/get-info-history/{firebase_uid}/{movie_id}', [History_API::class, 'getInfoHistory'])->name('history.getInfoHistory');
+
+//Payment
+Route::post('/payment/create', [Payment_API::class, 'createPayment']);
+Route::get('/payment/return', [Payment_API::class, 'returnPayment']);
+Route::get('/payment/cancel', [Payment_API::class, 'cancelPayment']);
+Route::post('/payment/webhook', [Payment_API::class, 'webhook']);
+
+// Route::post('/payment/webhook', function () {
+//     return response()->json(['success' => true]);
+// });
